@@ -1,0 +1,1 @@
+SELECT DISTINCT my_table FROM b WHERE c=d

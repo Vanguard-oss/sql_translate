@@ -1,0 +1,33 @@
+{
+    "source": "https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html",
+    "exact_matches": {
+        "G": "era_designator",
+        "y": "%Y",
+        "Y": "%Y",
+        "yy": "%y",
+        "YY": "%y",
+        "yyyy": "%Y",
+        "YYYY": "%Y",
+        "M": "%c",
+        "MM": "%m",
+        "MMM": "%b",
+        "MMMM": "%M",
+        "w": "%u",
+        "ww": "%u",
+        "D": "%j",
+        "d": "%d",
+        "dd": "%d",
+        "H": "%k",
+        "HH": "%k",
+        "h": "%l",
+        "hh": "%l",
+        "m": "%i",
+        "mm": "%i",
+        "s": "%s",
+        "ss": "%s",
+        "SSS": "%f"
+    },
+    "patterns": {
+        "M": "%M"
+    }
+}

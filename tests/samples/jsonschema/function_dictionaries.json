@@ -1,0 +1,102 @@
+{
+    "title": "translation dictionary",
+    "description": "Validate the translation dictionary",
+    "type": "object",
+    "additionalProperties": {
+        "description": "Structure followed by any translation entry",
+        "type": "object",
+        "pattern": "^[a-z_]+$",
+        "properties": {
+            "translation": {
+                "description": "Name of the translated function in the target language. Lower case mandatory.",
+                "type": "string"
+            },
+            "signature": {
+                "description": "Breakdown of the function signature in the target language",
+                "type": "array",
+                "items": {
+                    "properties": {
+                        "data_type": {
+                            "description": "Data type expected for an argument for the function in the target language",
+                            "type": "string"
+                        },
+                        "input_argument_nb": {
+                            "description": "natural integer: maps to input argument|-1: optional argument|string: static value."
+                        },
+                        "optional": {
+                            "description": "optional argument",
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "data_type",
+                        "input_argument_nb"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "compositions": {
+                "description": "Special composition functions applied to one or many arguments.",
+                "type": "array",
+                "items": {
+                    "properties": {
+                        "formula": {
+                            "description": "Formula to be applied. {arg} is the argument under consideration. {args[0]} select argument at index 0.",
+                            "type": "string"
+                        },
+                        "args": {
+                            "description": "arguments on which the composition applies."
+                        },
+                        "as_group": {
+                            "description": "if true, applies ', '.join() on the arguments selected before applying the composition",
+                            "type": "boolean"
+                        },
+                        "merged": {
+                            "description": "if true, applies ' '.join() on the arguments selected before applying the composition (effectively reduces the argument count!)",
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "formula",
+                        "args"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "examples": {
+                "description": "Hive examples highlighting the use. Leveraged to check translation",
+                "type": "array",
+                "items": {
+                    "anyOf": [
+                        {
+                            "description": "Hive query that will be automatically translated to Presto for testing purposes",
+                            "type": "string"
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "hive": {
+                                    "description": "Hive query",
+                                    "type": "string"
+                                },
+                                "presto": {
+                                    "description": "Manually translated Presto query",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            "returns": {
+                "description": "Data type (in the target language) returned by the function",
+                "type": "string"
+            }
+        },
+        "required": [
+            "translation",
+            "returns"
+        ],
+        "additionalProperties": false
+    }
+}

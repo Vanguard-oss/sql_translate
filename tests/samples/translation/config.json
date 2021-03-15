@@ -1,0 +1,8 @@
+{
+    "query_parameters": {
+        "complex_statement.hive": {
+            "a": "some_value",
+            "b": 42
+        }
+    }
+}

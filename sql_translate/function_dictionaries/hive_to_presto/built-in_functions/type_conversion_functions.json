@@ -1,0 +1,10 @@
+{
+    "cast": {
+        "translation": "cast",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": "unlimited"}
+        ],
+        "examples": ["select cast(9 as bigint)", "select cast(9.1 as bigint)"],
+        "returns": "any"
+    }
+}

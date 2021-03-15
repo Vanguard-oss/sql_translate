@@ -1,0 +1,18 @@
+with sub as
+(
+select distinct 
+     a
+    ,date_format(cast(b AS timestamp), '%Y-%m-%d') as b
+    ,c
+    ,d
+    ,e
+    ,f 
+    ,g
+    ,h
+    ,i
+from db.table
+where j in ('917','1054' )
+and date_format(cast(b AS timestamp), '%Y-%m-%d') = '${kkk}' 
+order by f,g 
+)
+select * from sub

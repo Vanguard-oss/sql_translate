@@ -1,0 +1,27 @@
+{
+    "array_contains": {
+        "translation": "contains",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": 0},
+            {"data_type": "any", "input_argument_nb": 1}
+        ],
+        "examples": ["SELECT array_contains(array(1, 2), 5)", "SELECT array_contains(array(1, 2), 2)"],
+        "returns": "boolean"
+    },
+    "size": {
+        "translation": "cardinality",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": 0}
+        ],
+        "examples": ["SELECT size(array(2, 1))"],
+        "returns": "array(any)"
+    },
+    "sort_array": {
+        "translation": "array_sort",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": 0}
+        ],
+        "examples": ["SELECT sort_array(array(2, 1))"],
+        "returns": "array(any)"
+    }
+}

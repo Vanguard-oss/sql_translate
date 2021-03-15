@@ -1,0 +1,26 @@
+{
+    "abs": {
+        "translation": "abs",
+        "signature": [
+            {"data_type": "double", "input_argument_nb": 0}
+        ],
+        "examples": ["select abs(1.5)", "select abs(-1.5)"],
+        "returns": "double"
+    },
+    "greatest": {
+        "translation": "greatest",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": "unlimited"}
+        ],
+        "examples": ["select greatest(1.5, 3, 0, 5)", "select greatest(1.5, NULL, 0, 5)", "select greatest('a', 'c', 'b')"],
+        "returns": "any"
+    },
+    "least": {
+        "translation": "least",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": "unlimited"}
+        ],
+        "examples": ["select least(1.5, 3, 0, 5)", "select least(1.5, NULL, 0, 5)", "select least('a', 'c', 'b')"],
+        "returns": "any"
+    }
+}

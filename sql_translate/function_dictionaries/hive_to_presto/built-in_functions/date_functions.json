@@ -1,0 +1,158 @@
+{
+    "add_months": {
+        "translation": "date_format",
+        "signature": [
+            {"data_type": "timestamp", "input_argument_nb": 0},
+            {"data_type": "bigint", "input_argument_nb": 1},
+            {"data_type": "varchar", "input_argument_nb": "'%Y-%m-%d'"}
+        ],
+        "compositions": [
+            {"formula": "{arg} + interval '{args[1]}' month", "args": [0]},
+            {"formula": "", "args": [1]}
+        ],
+        "examples": ["select add_months('2020-03-25 16:32:01', 1)", "select add_months('2020-03-25', 1)"],
+        "returns": "varchar"
+    },
+    "current_date": {
+        "translation": "current_date",
+        "examples": ["select current_date()"],
+        "returns": "timestamp"
+    },
+    "current_timestamp": {
+        "translation": "cast(current_timestamp AS timestamp)",
+        "examples": ["select current_timestamp()"],
+        "returns": "timestamp"
+    },    
+    "date_add": {
+        "translation": "date_add",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": "'day'"},
+            {"data_type": "bigint", "input_argument_nb": 1},
+            {"data_type": "date", "input_argument_nb": 0}
+        ],
+        "examples": ["select date_add('2020-03-25 16:32:01', 1)"],
+        "returns": "date"
+    },
+    "date_format": {
+        "translation": "date_format",
+        "signature": [
+            {"data_type": "timestamp", "input_argument_nb": 0},
+            {"data_type": "varchar", "input_argument_nb": 1}
+        ],
+        "examples": ["select date_format(timestamp('2020-03-25 16:32:01'), 'yyyy-MM-dd')", "select date_format(timestamp('2020-03-25 16:32:01'), 'yy.MMM.dd')"],
+        "returns": "varchar"
+    },
+    "date_sub": {
+        "translation": "date_add",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": "'day'"},
+            {"data_type": "bigint", "input_argument_nb": 1},
+            {"data_type": "date", "input_argument_nb": 0}
+        ],
+        "compositions": [
+            {"formula": "-{arg}", "args": [1]}
+        ],
+        "examples": ["select date_sub('2020-03-25 16:32:01', 1)"],
+        "returns": "date"
+    },
+    "datediff": {
+        "translation": "date_diff",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": "'day'"},
+            {"data_type": "date", "input_argument_nb": 1},
+            {"data_type": "date", "input_argument_nb": 0}
+        ],
+        "examples": ["select datediff('2020-03-30', '2020-03-25')", "select datediff('2020-03-26 01:35:01', '2020-03-25 23:32:01')"],
+        "returns": "bigint"
+    },
+    "day": {
+        "translation": "day",
+        "signature": [
+            {"data_type": "timestamp", "input_argument_nb": 0}
+        ],
+        "examples": ["select day('2020-03-25')"],
+        "returns": "bigint"
+    },
+    "extract": {
+        "translation": "extract",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": 0},
+            {"data_type": "any", "input_argument_nb": 1},
+            {"data_type": "timestamp", "input_argument_nb": 2}
+        ],
+        "examples": [
+            "select extract(day from '2020-03-25 16:32:01')", 
+            "select extract(dayofweek from '2020-03-21 16:32:01')", 
+            "select extract(hour from '2020-03-25 16:32:01')", 
+            "select extract(minute from '2020-03-25 16:32:01')", 
+            "select extract(month from '2020-03-25 16:32:01')",
+            "select extract(quarter from '2020-03-25 16:32:01')",
+            "select extract(second from '2020-03-25 16:32:01')",
+            "select extract(week from '2020-03-25 16:32:01')",
+            "select extract(year from '2020-03-25 16:32:01')"
+        ],
+        "returns": "bigint"
+    },
+    "from_unixtime": {
+        "translation": "date_format",
+        "signature": [
+            {"data_type": "bigint", "input_argument_nb": 0},
+            {"data_type": "varchar", "input_argument_nb": "'%Y-%m-%d %H:%i:%S'"}
+        ],
+        "compositions": [
+            {"formula": "from_unixtime({arg})", "args": [0]}
+        ],
+        "examples": ["select from_unixtime(1604355406)"],
+        "returns": "varchar"
+    },
+    "from_utc_timestamp": {
+        "translation": "",
+        "signature": [
+            {"data_type": "timestamp", "input_argument_nb": 0},
+            {"data_type": "varchar", "input_argument_nb": 1}
+        ],
+        "examples": ["select from_utc_timestamp('1970-01-30 16:00:00', 'PST')"],
+        "returns": "timestamp"
+    },
+    "month": {
+        "translation": "month",
+        "signature": [
+            {"data_type": "timestamp", "input_argument_nb": 0}
+        ],
+        "examples": ["select month('2020-03-25')"],
+        "returns": "bigint"
+    },
+    "to_date": {
+        "translation": "date",
+        "signature": [
+            {"data_type": "timestamp", "input_argument_nb": 0}
+        ],
+        "examples": ["select to_date('2020-03-25 16:32:01')"],
+        "returns": "date"
+    },
+    "unix_timestamp": {
+        "translation": "to_unixtime",
+        "signature": [
+            {"data_type": "timestamp", "input_argument_nb": 0, "optional": true},
+            {"data_type": "varchar", "input_argument_nb": 1, "optional": true}
+        ],
+        "examples": ["select unix_timestamp()", "select unix_timestamp('2020-03-25 16:32:01')", "select unix_timestamp('2020.03.25', 'yyyy.MM.dd')"],
+        "returns": "bigint"
+    },
+    "weekofyear": {
+        "translation": "week_of_year",
+        "signature": [
+            {"data_type": "timestamp", "input_argument_nb": 0}
+        ],
+        "examples": ["select weekofyear('2020-03-25')"],
+        "returns": "bigint"
+    },
+    "year": {
+        "translation": "year",
+        "signature": [
+            {"data_type": "timestamp", "input_argument_nb": 0}
+        ],
+        "examples": ["select year('2020-03-25')"],
+        "returns": "bigint"
+    }
+}

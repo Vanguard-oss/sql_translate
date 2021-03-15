@@ -1,0 +1,158 @@
+{
+    "array": {
+        "translation": "array",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": "unlimited"}
+        ],
+        "examples": ["SELECT array(1, 2)"],
+        "returns": "array"
+    },
+    "date": {
+        "translation": "date",
+        "signature": [
+            {"data_type": "timestamp", "input_argument_nb": 0}
+        ],
+        "examples": ["select date('2020-10-25')", "select date('2020-03-25 16:32:01')"],
+        "returns": "varchar"
+    },
+    "dense_rank": {
+        "translation": "dense_rank",
+        "signature": [
+        ],
+        "examples": [{"hive": "with a as (select stack(3, 'Africa', 'America', 'Europe') as name) SELECT name, dense_rank() OVER (PARTITION BY null ORDER BY name) FROM a", "presto": "SELECT name, rank() OVER (PARTITION BY null ORDER BY name) FROM (values ('Africa'), ('America'), ('Europe')) as t(name)"}],
+        "returns": "bigint"
+    },
+    "distinct": {
+        "translation": "distinct",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": "unlimited"}
+        ],
+        "returns": "any"
+    },
+    "first_value": {
+        "translation": "first_value",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": 0}
+        ],
+        "examples": [{"hive": "with a as (select stack(3, 'Africa', 'America', 'Europe') as name) SELECT name, first_value(name) OVER (ORDER BY name) FROM a", "presto": "SELECT name, first_value(name) OVER (ORDER BY name) FROM (values ('Africa'), ('America'), ('Europe')) as t(name)"}],
+        "returns": "any"
+    },
+    "int": {
+        "translation": "floor",
+        "signature": [
+            {"data_type": "double", "input_argument_nb": 0}
+        ],
+        "examples": ["select int(1)", "select int(1.1)"],
+        "returns": "bigint"
+    },
+    "isnotnull": {
+        "translation": "is not null",
+        "signature": [],
+        "examples": ["select isnotnull(1)", "select isnotnull(0)"],
+        "returns": "boolean"
+    },
+    "isnull": {
+        "translation": "is null",
+        "signature": [],
+        "examples": ["select isnull(1)", "select isnull(0)"],
+        "returns": "boolean"
+    },
+    "lag": {
+        "translation": "lag",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": 0},
+            {"data_type": "bigint", "input_argument_nb": 1, "optional": true},
+            {"data_type": "any", "input_argument_nb": 2, "optional": true}
+        ],
+        "examples": [{"hive": "with a as (select stack(3, 'Africa', 'America', 'Europe') as name) SELECT name, lag(name) OVER (ORDER BY name) FROM a", "presto": "SELECT name, lag(name) OVER (ORDER BY name) FROM (values ('Africa'), ('America'), ('Europe')) as t(name)"}],
+        "returns": "any"
+    },
+    "last_value": {
+        "translation": "last_value",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": 0}
+        ],
+        "examples": [{"hive": "with a as (select stack(3, 'Africa', 'America', 'Europe') as name) SELECT name, last_value(name) OVER (ORDER BY name) FROM a", "presto": "SELECT name, last_value(name) OVER (ORDER BY name) FROM (values ('Africa'), ('America'), ('Europe')) as t(name)"}],
+        "returns": "any"
+    },
+    "lead": {
+        "translation": "lead",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": 0},
+            {"data_type": "bigint", "input_argument_nb": 1, "optional": true},
+            {"data_type": "any", "input_argument_nb": 2, "optional": true}
+        ],
+        "examples": [{"hive": "with a as (select stack(3, 'Africa', 'America', 'Europe') as name) SELECT name, lead(name) OVER (ORDER BY name) FROM a", "presto": "SELECT name, lead(name) OVER (ORDER BY name) FROM (values ('Africa'), ('America'), ('Europe')) as t(name)"}],
+        "returns": "any"
+    },
+    "over": {
+        "translation": "over",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": "unlimited"}
+        ],
+        "examples": [{"hive": "with a as (select stack(3, 'Africa', 'America', 'Europe') as name) SELECT name, rank() OVER (PARTITION BY null ORDER BY name) FROM a", "presto": "SELECT name, rank() OVER (PARTITION BY null ORDER BY name) FROM (values ('Africa'), ('America'), ('Europe')) as t(name)"}],
+        "returns": "any"
+    },
+    "partition": {
+        "translation": "partition",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": "unlimited"}
+        ],
+        "examples": [],
+        "returns": "any"
+    },
+    "rank": {
+        "translation": "rank",
+        "signature": [
+        ],
+        "examples": [{"hive": "with a as (select stack(3, 'Africa', 'America', 'Europe') as name) SELECT name, rank() OVER (PARTITION BY null ORDER BY name) FROM a", "presto": "SELECT name, rank() OVER (PARTITION BY null ORDER BY name) FROM (values ('Africa'), ('America'), ('Europe')) as t(name)"}],
+        "returns": "bigint"
+    },
+    "row_number": {
+        "translation": "row_number",
+        "signature": [],
+        "examples": [{"hive": "with a as (select stack(3, 'Africa', 'America', 'Europe') as name) SELECT name, row_number() OVER (ORDER BY name) FROM a", "presto": "SELECT name, row_number() OVER (ORDER BY name) FROM (values ('Africa'), ('America'), ('Europe')) as t(name)"}],
+        "returns": "bigint"
+    },
+    "timestamp": {
+        "translation": "cast",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": 0}
+        ],
+        "examples": ["select timestamp('2020-03-25')", "select timestamp('2020-03-25 16:32:01')"],
+        "returns": "timestamp"
+    },
+    "unnest": {
+        "translation": "unnest",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": "unlimited"}
+        ],
+        "compositions": [
+            {"formula": "{arg}", "args": "all", "merged": true}
+        ],
+        "returns": "any"
+    },
+    "zzz_function_placeholder_do_not_use": {
+        "translation": "zzz_function_placeholder_do_not_use",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": "unlimited"}
+        ],
+        "examples": ["select zzz_function_placeholder_do_not_use"],
+        "returns": "any"
+    },
+    "zzz_test_no_args_hive": {
+        "translation": "zzz_test_no_args_presto",
+        "signature": [],
+        "examples": ["select zzz_test_no_args_hive"],
+        "returns": "any"
+    },
+    "zzz_test_not_yet_implemented": {
+        "translation": "zzzzzzz",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": "unlimited"},
+            {"data_type": "any", "input_argument_nb": 1}
+        ],
+        "examples": ["select zzz_test_not_yet_implemented"],
+        "returns": "any"
+    }    
+}

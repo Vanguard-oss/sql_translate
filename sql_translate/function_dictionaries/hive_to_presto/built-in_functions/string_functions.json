@@ -1,0 +1,156 @@
+{
+    "concat": {
+        "translation": "concat",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": "unlimited"}
+        ],
+        "examples": ["SELECT concat('a', 'b', 'c')"],
+        "returns": "varchar"
+    },
+    "concat_ws": {
+        "translation": "substr",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": "unlimited"}
+        ],
+        "compositions": [
+            {"formula": "case when {arg} is not null then {args[0]} || {arg} else '' end", "args": [1, "end"]},
+            {"formula": "", "args": [0]},
+            {"formula": "concat({arg})", "args": "all", "as_group": true},
+            {"formula": "{arg}, 2", "args": "all", "as_group": true}
+        ],
+        "examples": [{"hive": "with a as (select stack(3, 'A', NULL, NULL, 'B', 'A', 'B') AS (st, st2)) select concat_ws('_', st, st2) from a", "presto": "with v as (SELECT * FROM (VALUES ('A', NULL), (NULL, 'B'), ('A', 'B')) AS t(st, st2)) select substr(concat(case when st is not null then '_' || st else '' end, case when st2 is not null then '_' || st2 else '' end), 2) from v"}],
+        "returns": "varchar"
+    },
+    "format_number": {
+        "translation": "round",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": 0},
+            {"data_type": "any", "input_argument_nb": 1}
+        ],
+        "examples": ["select format_number(3.1415, 2)", "select format_number(1234.6, '00000')"],
+        "returns": "varchar"
+    },
+    "instr": {
+        "translation": "strpos",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": 0},
+            {"data_type": "varchar", "input_argument_nb": 1}
+        ],
+        "examples": ["select instr('Hello world!', 'o')"],
+        "returns": "bigint"
+    },
+    "length": {
+        "translation": "length",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": 0}
+        ],
+        "examples": ["select length('Hello world!')"],
+        "returns": "bigint"
+    },
+    "lower": {
+        "translation": "lower",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": 0}
+        ],
+        "examples": ["select lower('Hello world!')"],
+        "returns": "varchar"
+    },
+    "lpad": {
+        "translation": "lpad",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": 0},
+            {"data_type": "bigint", "input_argument_nb": 1},
+            {"data_type": "varchar", "input_argument_nb": 2}
+        ],
+        "examples": ["select lpad('Hello world!', 2, 'o')"],
+        "returns": "varchar"
+    },
+    "ltrim": {
+        "translation": "ltrim",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": 0}
+        ],
+        "examples": ["select ltrim('   Hello world!   ')"],
+        "returns": "varchar"
+    }, 
+    "regexp_extract": {
+        "translation": "regexp_extract",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": 0},
+            {"data_type": "varchar", "input_argument_nb": 1},
+            {"data_type": "bigint", "input_argument_nb": 2}
+        ],
+        "examples": ["select regexp_extract('foothebar', 'foo(.*?)(bar)', 2)"],
+        "returns": "varchar"
+    },
+    "regexp_replace": {
+        "translation": "regexp_replace",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": 0},
+            {"data_type": "varchar", "input_argument_nb": 1},
+            {"data_type": "varchar", "input_argument_nb": 2}
+        ],
+        "examples": ["select regexp_replace('foobar', 'oo|ar', '')"],
+        "returns": "varchar"
+    },
+    "reverse": {
+        "translation": "reverse",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": 0}
+        ],
+        "examples": ["select reverse('foobar')"],
+        "returns": "varchar"
+    }, 
+    "rtrim": {
+        "translation": "rtrim",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": 0}
+        ],
+        "examples": ["select rtrim('   Hello world!   ')"],
+        "returns": "varchar"
+    },
+    "split": {
+        "translation": "split",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": 0},
+            {"data_type": "varchar", "input_argument_nb": 1}
+        ],
+        "examples": ["SELECT split('hello_there', '_')", "SELECT split('hello_there', 'k')"],
+        "returns": "array(varchar)"
+    },
+    "substr": {
+        "translation": "substr",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": 0},
+            {"data_type": "bigint", "input_argument_nb": 1}
+        ],
+        "examples": ["select substr('Hello world!', 2)"],
+        "returns": "varchar"
+    },
+    "substring": {
+        "translation": "substr",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": 0},
+            {"data_type": "bigint", "input_argument_nb": 1},
+            {"data_type": "bigint", "input_argument_nb": 2, "optional": true}
+        ],
+        "examples": ["select substring('Hello world!', 2)", "select substring('Hello world!', 2, 3)"],
+        "returns": "varchar"
+    },
+    "trim": {
+        "translation": "trim",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": 0}
+        ],
+        "examples": ["select trim('   Hello world!   ')"],
+        "returns": "varchar"
+    },
+    "upper": {
+        "translation": "upper",
+        "signature": [
+            {"data_type": "varchar", "input_argument_nb": 0}
+        ],
+        "examples": ["select upper('Hello world!')"],
+        "returns": "varchar"
+    }
+}

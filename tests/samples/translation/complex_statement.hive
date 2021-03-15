@@ -1,0 +1,18 @@
+with sub as
+(
+select distinct 
+     a
+    ,date(b) as b
+    ,c
+    ,d
+    ,e
+    ,f 
+    ,g
+    ,h
+    ,i
+from db.table
+where j in ('917','1054' )
+and date(b) = '${kkk}' 
+order by f,g 
+)
+select * from sub

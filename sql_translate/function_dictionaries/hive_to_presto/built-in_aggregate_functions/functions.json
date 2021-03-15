@@ -1,0 +1,83 @@
+{
+    "avg": {
+        "translation": "avg",
+        "signature": [
+            {"data_type": "double", "input_argument_nb": 0}
+        ],
+        "examples": [{"hive": "with v as (select stack(3, 1, NULL, 3) AS st) select avg(st) from v", "presto": "with v as (SELECT * FROM (VALUES (1), (NULL), (3)) AS t(st)) select avg(st) from v"}],
+        "returns": "double"
+    },
+    "collect_list": {
+        "translation": "array_agg",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": "unlimited"}
+        ],
+        "examples": [{"hive": "with v as (select stack(3, 'A', 'B', 'C') AS st) select collect_list(st) from v", "presto": "with a as (select * from (values ('A'), ('B'), ('C')) AS t(st)) select array_agg(st) from a"}],
+        "returns": "array<any>"
+    },
+    "collect_set": {
+        "translation": "array_agg",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": "unlimited"}
+        ],
+        "compositions": [
+            {"formula": "distinct {arg}", "args": "all"}
+        ],
+        "returns": "array<any>"
+    },
+    "count": {
+        "translation": "count",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": "unlimited"}
+        ],
+        "examples": [
+            "select count('Hello world!')",
+            "select count(distinct 'Hello world!')",
+            {"hive": "with a as (select stack(4, 'A', NULL, NULL, 'B', 'A', 'B', 'A', 'B') AS (st, st2)) select count(distinct st, st2) from a", "presto": "with a as (SELECT * FROM (VALUES ('A', NULL), (NULL, 'B'), ('A', 'B'), ('A', 'B')) AS t(st, st2)) select count(distinct st || ' ' || st2) from a"},
+            {"hive": "with a as (select stack(4, 'A', NULL, NULL, 'B', 'A', 'B', 'A', 'C') AS (st, st2)) select count(distinct st, st2) from a", "presto": "with a as (SELECT * FROM (VALUES ('A', NULL), (NULL, 'B'), ('A', 'B'), ('A', 'C')) AS t(st, st2)) select count(distinct st || ' ' || st2) from a"}
+        ],
+        "returns": "bigint"
+    },
+    "max": {
+        "translation": "max",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": 0},
+            {"data_type": "bigint", "input_argument_nb": 1, "optional": true}
+        ],
+        "examples": [{"hive": "with v as (select stack(3, 1, NULL, 3) AS st) select max(st) from v", "presto": "with v as (SELECT * FROM (VALUES (1), (NULL), (3)) AS t(st)) select max(st) from v"}],
+        "returns": "any"
+    },
+    "min": {
+        "translation": "min",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": 0},
+            {"data_type": "bigint", "input_argument_nb": 1, "optional": true}
+        ],
+        "examples": [{"hive": "with v as (select stack(3, 1, NULL, 3) as st)  select min(st) from v", "presto": "with v as (select * from (VALUES (1), (NULL), (3)) as t(st)) select min(st) from v"}],
+        "returns": "any"
+    },
+    "percentile": {
+        "translation": "approx_percentile",
+        "signature": [
+            {"data_type": "bigint", "input_argument_nb": 0},
+            {"data_type": "double", "input_argument_nb": 1}
+        ],
+        "returns": "double"
+    },
+    "stddev_pop": {
+        "translation": "stddev_pop",
+        "signature": [
+            {"data_type": "double", "input_argument_nb": 0}
+        ],
+        "examples": [{"hive": "with v as (select stack(3, 1, NULL, 3) as st)  select stddev_pop(st) from v", "presto": "with v as (SELECT * FROM (VALUES (1), (NULL), (3)) AS t(st)) select stddev_pop(st) from v"}],
+        "returns": "double"
+    },
+    "sum": {
+        "translation": "sum",
+        "signature": [
+            {"data_type": "double", "input_argument_nb": 0}
+        ],
+        "examples": [{"hive": "with v as (select stack(3, 1, NULL, 3) AS st) select sum(st) from v", "presto": "with v as (SELECT * FROM (VALUES (1), (NULL), (3)) AS t(st)) select sum(st) from v"}],
+        "returns": "double"
+    }    
+}

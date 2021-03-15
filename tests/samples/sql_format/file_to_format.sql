@@ -1,0 +1,1 @@
+select distinct my_Table from b where c=d -- comment

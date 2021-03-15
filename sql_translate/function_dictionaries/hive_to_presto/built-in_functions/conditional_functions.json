@@ -1,0 +1,29 @@
+{
+    "coalesce": {
+        "translation": "coalesce",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": "unlimited"}
+        ],
+        "examples": ["SELECT coalesce(NULL, 'a', NULL, 'b')"],
+        "returns": "any"
+    },
+    "if": {
+        "translation": "if",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": 0},
+            {"data_type": "any", "input_argument_nb": 1},
+            {"data_type": "any", "input_argument_nb": 2}
+        ],
+        "examples": ["SELECT if(true, 1, 0)", "SELECT if(false, 1, 0)"],
+        "returns": "any"
+    },
+    "nvl": {
+        "translation": "coalesce",
+        "signature": [
+            {"data_type": "any", "input_argument_nb": 0},
+            {"data_type": "any", "input_argument_nb": 1}
+        ],
+        "examples": ["SELECT nvl('a', NULL)"],
+        "returns": "any"
+    }
+}

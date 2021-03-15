@@ -1,0 +1,10 @@
+{
+    "query_parameters": {
+        "test.hive": {
+            "a": "udf.hello()"
+        }
+    },
+    "run_order": [
+        "test.hive"
+    ]
+}

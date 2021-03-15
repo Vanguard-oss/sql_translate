@@ -1,0 +1,6 @@
+('HY000', "[HY000] [Teradata][Presto] (1060) Presto Query Error: line 22:16: '=' cannot be applied to varchar, bigint (1)")----The failed query: 
+WITH a as (
+    select b  as d from c
+)
+select d
+FROM a
